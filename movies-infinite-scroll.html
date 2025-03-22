@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="description" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="author" content="StreamLab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>mosworks! - Catch up with all your favorite charecters!</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!-- CSS bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!--  Style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!--  Responsive -->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    // Check if the user is logged in by checking sessionStorage
+    if (!sessionStorage.getItem("isLoggedIn")) {
+        // If not logged in, redirect to login page
+        window.location.href = "log-in.html"; // Redirect to the login page
+    }
+});
+    // Listen for click on logout anchor
+document.getElementById("logoutLink").addEventListener("click", function(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+    // Clear sessionStorage to log out the user
+    sessionStorage.clear();
+    // Redirect and force reload to update the page state
+    location.reload();
+
+    // Redirect to login page and force page reload
+    window.location.href = "log-in.html"; // Redirect to your login page
+});
+
+</script>
+</head>
+
+<body>
+
+    <!--=========== Loader =============-->
+    <div id="gen-loading">
+        <div id="gen-loading-center">
+            <img src="images/logo-1.png" alt="loading">
+        </div>
+    </div>
+    <!--=========== Loader =============-->
+
+    <!--========== Header ==============-->
+    <header id="gen-header" class="gen-header-style-1 gen-has-sticky">
+      <div class="gen-bottom-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <nav class="navbar navbar-expand-lg navbar-light">
+                     <a class="navbar-brand" href="#">
+                        <img class="img-fluid logo" src="images/logo-1.png" alt="streamlab-image">
+                     </a>
+                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div id="gen-menu-contain" class="gen-menu-contain">
+                           <ul id="gen-main-menu" class="navbar-nav ml-auto">
+                              <li class="menu-item">
+                                 <!--a href="index-2.html" aria-current="page">Home</a-->
+                                 
+                                 
+                              </li>
+
+                              <li class="menu-item active">
+                                 <a href="movies-infinite-scroll.html">Full Library</a>     
+                              </li>
+
+                             <li class="menu-item">
+                                <a href="#" id="logoutLink">Logout</a>
+                              </li>
+
+                                 </ul>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                    
+                        <div class="gen-menu-search-block">
+                           
+                           <div class="gen-search-form">
+                              <form role="search" method="get" class="search-form" action="#">
+                                 <label>
+                                    <span class="screen-reader-text"></span>
+                                    <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                                 </label>
+                                 <button type="submit" class="search-submit"><span
+                                       class="screen-reader-text"></span></button>
+                              </form>
+                           </div>
+                        </div>
+                        
+                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                     </button>
+                     </div>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+    <!--========== Header ==============-->
+
+    <!-- breadcrumb -->
+    <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpg');">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav aria-label="breadcrumb">
+                        <div class="gen-breadcrumb-title">
+                            <h1>
+                                Movies
+                            </h1>
+                        </div>
+                        <div class="gen-breadcrumb-container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i
+                                            class="fas fa-home mr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item active">Movie</li>
+                            </ol>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
+
+    <!-- Section-1 Start -->
+    <section class="gen-section-padding-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-5.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="video/job" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/5e8c9902207afaeb7120430c585a445f21e92932081d64bc99f80e4925bcb002.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Nancy's New Job</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-4.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                <li class="share top">
+                                                  
+                                                </li>
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="video/2b2961a431b23c9007efe270c1d7eb79c19d4192d7cd2d924176eb0b19e7d2a1.mp4" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/2b2961a431b23c9007efe270c1d7eb79c19d4192d7cd2d924176eb0b19e7d2a1.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Someone's Car</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-23.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/57c4991869b96345e62c3f9a886b2503ea942aa6e50c129f51c1e1a48d8430ea.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Fake Prophets</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-53.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/f3a17cb45e2c93a89db2f7b08196d5c3ad0ef14bc7ae1b09327c9a2a6bc8e345.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Ubwali</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-26.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/4a7c1f234db7bf61296e2d6c6759ed9f87c2e8417a16b8ecb8cfb930c4d80e5e.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Who's Pregnancy?</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-24.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/1a2f4d5e6b7c8a9d0e1f2c3b4a5d6e7c8b9f0a1e2c3d4b5e6f7c8a9b0d1e2f3.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">He Will Say Yes</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-29.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/f4e3d2c1b0a9e8d7c6b5a4f3e2d1c0b9a8e7f6d5c4b3a2e1f0d9c8b7a6f5e4.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Natasha & Food</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-33.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                               
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/3c2b1a4d5e6f7b8c9a0e1d2c3f4b5a6e7d8c9f0b1a2e3d4f5c6b7a8e9f0d1c2.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Pregnant</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-8.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                               
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="single-movie.html" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="video/d7c6b5a4f3e2d1c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6e5f4d3c2b1a0f9e8d7.mp4">Protocol</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-51.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                              
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8e7f6d5c4b3.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Church</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-25.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/e1f0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8e7f6d5c4b3a2f1.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Date My Family</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-12.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Sofia</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-32.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                               
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/a0f9e8d7c6b5a4f3e2d1c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">49</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-27.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/6b5a4f3e2d1c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">My Neighbour's New Hair</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="action.html"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-13.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/4f3e2d1c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Nancy's Sacrifice</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                                <div class="gen-movie-contain">
+                                    <div class="gen-movie-img">
+                                        <img src="images/background/asset-46.jpg" alt="streamlab-image">
+                                        <div class="gen-movie-add">
+                                            <div class="wpulike wpulike-heart">
+                                                <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
+                                                        type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                                </div>
+                                            </div>
+                                            <ul class="menu bottomRight">
+                                                
+                                                </li>
+                                            </ul>
+                                            <div class="movie-actions--link_add-to-playlist dropdown">
+                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="dropdown-menu mCustomScrollbar">
+                                                    <div class="mCustomScrollBox">
+                                                        <div class="mCSB_container">
+                                                            <a class="login-link" href="#">Sign in to add this movie to
+                                                                a
+                                                                playlist.</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gen-movie-action">
+                                            <a href="video/2d1c0b9a8e7f6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d.mp4" class="gen-button">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="gen-info-contain">
+                                        <div class="gen-movie-info">
+                                            <h3><a href="#">Saving The Submarine</a></h3>
+                                        </div>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li></li>
+                                                <li>
+                                                    <a href="#"><span>Comedy</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="gen-load-more-button">
+                        <div class="gen-btn-container">
+                            <a class="gen-button gen-button-loadmore" href="#">
+                                <span class="button-text">Load More</span>
+                                <span class="loadmore-icon" style="display: none;"><i
+                                        class="fa fa-spinner fa-spin"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section-1 End -->
+
+    <!-- footer start -->
+     <footer id="gen-footer">
+      <div class="gen-footer-style-1">
+         <div class="gen-footer-top">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-3 col-md-6">
+                     <div class="widget">
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <img src="images/logo-1.png" class="gen-footer-logo" alt="gen-footer-logo">
+                              <p>MosWorks: Where ideas turn into magic, and screens come alive with epic creativity!</p>
+                              <ul class="social-link">
+                                 <li><a href="https://web.facebook.com/MosworkAnimationStudios" target="_blank" class="facebook"><i class="fab fa-facebook-f" ></i></a></li>
+                                 <li><a href="https://www.tiktok.com/@mosworksanimations?lang=en" target="_blank" class="facebook"><i class="fab fa-tiktok"></i></a></li>
+                                 <li><a href="https://www.youtube.com/channel/UCD9oftZaqKbFK4dOYKl8v8Q" target="_blank" class="facebook"><i class="fab fa-youtube"></i></a></li>
+                                 <li><a href="https://wa.me/+260771653561" target="_blank" class="facebook"><i class="fab fa-whatsapp"></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                 
+                  <div class="col-xl-3  col-md-6">
+                     <div class="widget">
+                        <h4 class="footer-title"></h4>
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <p></p>
+                            
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="gen-copyright-footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12 align-self-center">
+                     <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2024 mosworks All Rights
+                           Reserved.</a></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+    <!-- footer End -->
+
+    <!-- Back-to-Top start -->
+    <div id="back-to-top">
+        <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+    </div>
+    <!-- Back-to-Top end -->
+
+    <!-- js-min -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/asyncloader.min.js"></script>
+    <!-- JS bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- owl-carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- counter-js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <!-- popper-js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <!-- Iscotop -->
+    <script src="js/isotope.pkgd.min.js"></script>
+
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <script src="js/slick.min.js"></script>
+
+    <script src="js/streamlab-core.js"></script>
+
+    <script src="js/script.js"></script>
+    <script type="text/javascript">document.getElementById("logoutLink").addEventListener("click", function(e) {
+    e.preventDefault(); // Prevent the default anchor behavior (page redirect)
+    
+    // Clear sessionStorage to log out the user
+    sessionStorage.clear();
+
+    // Optionally, log to check if the session is cleared
+    console.log("Session storage cleared:", sessionStorage.getItem("isLoggedIn"));
+
+    // Redirect to login page after clearing sessionStorage
+    window.location.href = "index.html"; // Change to your login page URL
+});
+</script>
+
+</body>
+
+
+</html>
