@@ -1,9 +1,11 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
-  # Block if our custom cookie is missing
+  # Block if:
+  # 1. Cookie is missing AND
+  # 2. Not coming from your domain
   RewriteCond %{HTTP_COOKIE} !mosworks_session=.+ [NC]
+  RewriteCond %{HTTP_REFERER} !^https://(www\.)?yourdomain\.com [NC]
   
-  # Apply to video files
   RewriteRule \.(mp4|mov|webm)$ - [F,L]
 </IfModule>
