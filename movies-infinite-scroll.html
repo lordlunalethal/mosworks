@@ -9,7 +9,7 @@
     <meta name="description" content="Streamlab - Video Streaming HTML5 Template" />
     <meta name="author" content="StreamLab" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>mosworks! - Catch up with all your favorite charecters!</title>
+    <title>mosworks! - Catch up with all your favorite characters!</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.png">
     <!-- CSS bootstrap-->
@@ -18,38 +18,31 @@
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
-    <script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    // Check if the user is logged in by checking sessionStorage
-    if (!sessionStorage.getItem("isLoggedIn")) {
-        // If not logged in, redirect to login page
-        window.location.href = "log-in.html"; // Redirect to the login page
-    }
-});
-    // Listen for click on logout anchor
-document.getElementById("logoutLink").addEventListener("click", function(e) {
-    e.preventDefault(); // Prevent default anchor behavior
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
 
-    // Clear sessionStorage to log out the user
-    sessionStorage.clear();
-    // Redirect and force reload to update the page state
-    location.reload();
-
-    // Redirect to login page and force page reload
-    window.location.href = "log-in.html"; // Redirect to your login page
-});
-
-</script>
+    <!-- Your Firebase Config -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBxn7hOX7k6L-CUgAzA_VzjECxeCCMbiV4",
+        authDomain: "mosworks-7bc44.firebaseapp.com",
+        projectId: "mosworks-7bc44",
+        storageBucket: "mosworks-7bc44.firebasestorage.app",
+        messagingSenderId: "788454456705",
+        appId: "1:788454456705:web:88ffe1a0a64c785468fc80",
+        measurementId: "G-6TSVFW3X73"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+    </script>
 </head>
 
 <body>
-
     <!--=========== Loader =============-->
-    <div id="gen-loading">
-        <div id="gen-loading-center">
-            <img src="images/logo-1.png" alt="loading">
-        </div>
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
     </div>
-    <!--=========== Loader =============-->
 
     <!--========== Header ==============-->
     <header id="gen-header" class="gen-header-style-1 gen-has-sticky">
@@ -64,47 +57,31 @@ document.getElementById("logoutLink").addEventListener("click", function(e) {
                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div id="gen-menu-contain" class="gen-menu-contain">
                            <ul id="gen-main-menu" class="navbar-nav ml-auto">
-                              <li class="menu-item">
-                                 <!--a href="index-2.html" aria-current="page">Home</a-->
-                                 
-                                 
-                              </li>
-
                               <li class="menu-item active">
                                  <a href="movies-infinite-scroll.html">Full Library</a>     
                               </li>
-
-                             <li class="menu-item">
+                              <li class="menu-item">
                                 <a href="#" id="logoutLink">Logout</a>
-                              </li>
-
-                                 </ul>
                               </li>
                            </ul>
                         </div>
                      </div>
-                    
-                        <div class="gen-menu-search-block">
-                           
-                           <div class="gen-search-form">
-                              <form role="search" method="get" class="search-form" action="#">
-                                 <label>
-                                    <span class="screen-reader-text"></span>
-                                    <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-                                 </label>
-                                 <button type="submit" class="search-submit"><span
-                                       class="screen-reader-text"></span></button>
-                              </form>
-                           </div>
+                     <div class="gen-menu-search-block">
+                        <div class="gen-search-form">
+                           <form role="search" method="get" class="search-form" action="#">
+                              <label>
+                                 <span class="screen-reader-text"></span>
+                                 <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                              </label>
+                              <button type="submit" class="search-submit"><span class="screen-reader-text"></span></button>
+                           </form>
                         </div>
-                        
-                        
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                     </div>
+                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-bars"></i>
                      </button>
-                     </div>
                   </nav>
                </div>
             </div>
@@ -1055,6 +1032,23 @@ document.getElementById("logoutLink").addEventListener("click", function(e) {
     // Redirect to login page after clearing sessionStorage
     window.location.href = "index.html"; // Change to your login page URL
 });
+</script>
+<script>
+        auth.onAuthStateChanged((user) => {
+        if (!user) {
+            // User not logged in, redirect to login page
+            window.location.href = 'log-in.html';
+        } else {
+            // User is logged in, hide spinner
+            spinner.style.display = 'none';
+            
+            // Set up logout functionality
+            document.getElementById('logoutLink').addEventListener('click', (e) => {
+                e.preventDefault();
+                spinner.style.display = 'flex';
+                auth.signOut().then(() => {
+                    window.location.href = 'index.html';
+                });
 </script>
 
 </body>
