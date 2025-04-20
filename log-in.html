@@ -209,89 +209,140 @@
         }
     </style>
 
-    <script>
-        // Initialize auth providers
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
-        const facebookProvider = new firebase.auth.FacebookAuthProvider();
-        
-        // Handle email/password login
-        document.getElementById("pms_login").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const email = document.getElementById("user_login").value;
-            const password = document.getElementById("user_pass").value;
-            const errorElement = document.getElementById("firebase-error");
-            const spinner = document.getElementById("loading-spinner");
+   <script>
+// Firebase Providers
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-            spinner.style.display = "flex";
-            errorElement.textContent = "";
+// ========================
+// AUTHENTICATION HANDLERS
+// ========================
 
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
-                })
-                .catch((error) => {
-                    spinner.style.display = "none";
-                    let errorMessage = "Login failed. Please try again.";
-                    switch(error.code) {
-                        case "auth/user-not-found": errorMessage = "No user found with this email."; break;
-                        case "auth/wrong-password": errorMessage = "Incorrect password."; break;
-                        case "auth/invalid-email": errorMessage = "Invalid email format."; break;
-                    }
-                    errorElement.textContent = errorMessage;
-                });
-        });
+// Universal login success handler
+function handleLoginSuccess(user) {
+  // Set secure HTTP-only cookie via server-side (recommended)
+  // Fallback to client-side cookie if needed
+  document.cookie = `mosworks_uid=${user.uid}; max-age=${60*60*24}; path=/; Secure; SameSite=Strict`;
+  localStorage.setItem('fbauth', 'true');
+  
+  // Redirect to library
+  setTimeout(() => {
+    window.location.href = "movies-infinite-scroll.html";
+  }, 500);
+}
 
-        // Google Login
-        document.getElementById("googleLogin").addEventListener("click", function() {
-            const spinner = document.getElementById("loading-spinner");
-            const errorElement = document.getElementById("firebase-error");
-            
-            spinner.style.display = "flex";
-            errorElement.textContent = "";
-            
-            auth.signInWithPopup(googleProvider)
-                .then(() => {
-                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
-                })
-                .catch((error) => {
-                    spinner.style.display = "none";
-                    errorElement.textContent = error.message;
-                });
-        });
+// Email/Password Login
+document.getElementById("pms_login").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const spinner = document.getElementById("loading-spinner");
+  const errorEl = document.getElementById("firebase-error");
+  
+  spinner.style.display = "flex";
+  errorEl.textContent = "";
 
-        // Facebook Login
-        document.getElementById("facebookLogin").addEventListener("click", function() {
-            const spinner = document.getElementById("loading-spinner");
-            const errorElement = document.getElementById("firebase-error");
-            
-            spinner.style.display = "flex";
-            errorElement.textContent = "";
-            
-            auth.signInWithPopup(facebookProvider)
-                .then(() => {
-                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
-                })
-                .catch((error) => {
-                    spinner.style.display = "none";
-                    errorElement.textContent = error.message;
-                });
-        });
+  auth.signInWithEmailAndPassword(
+    document.getElementById("user_login").value,
+    document.getElementById("user_pass").value
+  )
+  .then((userCred) => handleLoginSuccess(userCred.user))
+  .catch((error) => {
+    spinner.style.display = "none";
+    errorEl.textContent = 
+      error.code === "auth/user-not-found" ? "Account not found" :
+      error.code === "auth/wrong-password" ? "Incorrect password" :
+      "Login failed. Please try again";
+  });
+});
 
-        // Phone Login (will need additional UI)
-        document.getElementById("phoneLogin").addEventListener("click", function() {
-            alert("Phone login would open a verification flow here");
-            // You would typically implement this with:
-            // 1. A modal to enter phone number
-            // 2. reCAPTCHA verification
-            // 3. SMS code verification
-        });
-        // After successful Firebase login
+// Google Login
+document.getElementById("googleLogin").addEventListener("click", function() {
+  const spinner = document.getElementById("loading-spinner");
+  const errorEl = document.getElementById("firebase-error");
+  
+  spinner.style.display = "flex";
+  errorEl.textContent = "";
+
+  auth.signInWithPopup(googleProvider)
+    .then((result) => handleLoginSuccess(result.user))
+    .catch((error) => {
+      spinner.style.display = "none";
+      errorEl.textContent = error.message.includes("popup") 
+        ? "Popup blocked. Please allow popups to login." 
+        : error.message;
+    });
+});
+
+// Facebook Login
+document.getElementById("facebookLogin").addEventListener("click", function() {
+  const spinner = document.getElementById("loading-spinner");
+  const errorEl = document.getElementById("firebase-error");
+  
+  spinner.style.display = "flex";
+  errorEl.textContent = "";
+
+  auth.signInWithPopup(facebookProvider)
+    .then((result) => handleLoginSuccess(result.user))
+    .catch((error) => {
+      spinner.style.display = "none";
+      errorEl.textContent = error.message;
+    });
+});
+
+// ========================
+// SESSION MANAGEMENT
+// ========================
+
+// Persistent auth state check
 auth.onAuthStateChanged((user) => {
   if (user) {
-    // Set a custom cookie (expires in 1 day)
-    document.cookie = `mosworks_session=${user.uid}; max-age=86400; path=/; Secure; SameSite=Lax`;
+    // Refresh tokens on page load
+    document.cookie = `mosworks_uid=${user.uid}; max-age=${60*60*24}; path=/; Secure; SameSite=Strict`;
+    localStorage.setItem('fbauth', 'true');
+  } else {
+    // Clear all auth traces
+    document.cookie = 'mosworks_uid=; max-age=0; path=/';
+    localStorage.removeItem('fbauth');
   }
 });
-    </script>
+
+// Force logout from all providers
+document.getElementById("logoutLink")?.addEventListener("click", function(e) {
+  e.preventDefault();
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) spinner.style.display = "flex";
+
+  auth.signOut()
+    .then(() => {
+      // Nuclear option - clear everything
+      document.cookie = 'mosworks_uid=; max-age=0; path=/';
+      localStorage.clear();
+      sessionStorage.clear();
+      
+      // Force reload to prevent back-button issues
+      window.location.replace('index.html');
+    })
+    .catch((error) => {
+      console.error("Logout error:", error);
+      window.location.href = 'index.html';
+    });
+});
+
+// ========================
+// VIDEO ACCESS PROTECTION
+// ========================
+
+// Client-side protection (for GitHub Pages/local testing)
+function checkVideoAccess() {
+  if (!localStorage.getItem('fbauth') && 
+      !document.cookie.includes('mosworks_uid')) {
+    window.location.href = 'log-in.html';
+  }
+}
+
+// Run check on video pages
+if (window.location.pathname.includes('movies-infinite-scroll')) {
+  checkVideoAccess();
+}
+</script>
 </body>
 </html>
