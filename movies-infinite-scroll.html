@@ -1028,110 +1028,67 @@
     <script src="js/streamlab-core.js"></script>
 
     <script src="js/script.js"></script>
-    <script type="text/javascript">document.getElementById("logoutLink").addEventListener("click", function(e) {
-    e.preventDefault(); // Prevent the default anchor behavior (page redirect)
-    
-    // Clear sessionStorage to log out the user
-    sessionStorage.clear();
-
-    // Optionally, log to check if the session is cleared
-    console.log("Session storage cleared:", sessionStorage.getItem("isLoggedIn"));
-
-    // Redirect to login page after clearing sessionStorage
-    window.location.href = "index.html"; // Change to your login page URL
-});
-</script>
-<script>
-  // Enhanced Auth Protection
-    document.addEventListener("DOMContentLoaded", function() {
-        auth.onAuthStateChanged((user) => {
-            const loading = document.getElementById('gen-loading');
-            const content = document.getElementById('page-content');
-            
-            if (user) {
-                // User is authenticated
-                loading.style.display = 'none';
-                content.style.display = 'block';
-                
-                // Set up PROPER logout
-                document.getElementById('logoutLink').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    loading.style.display = 'flex';
-                    
-                    // Force sign out from all providers
-                    auth.signOut().then(() => {
-                        // Clear all auth tokens and caches
-                        sessionStorage.clear();
-                        localStorage.clear();
-                        
-                        // Force reload to prevent back-button access
-                        window.location.href = 'index.html';
-                        window.location.reload(true);
-                    }).catch((error) => {
-                        console.error("Logout failed:", error);
-                        window.location.href = 'index.html';
-                    });
-                });
-                
-            } else {
-                // Already handled in head script
-            }
-        });
-
-        // Prevent cached page access
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                auth.currentUser.reload().catch(() => {
-                    window.location.href = 'index.html';
-                });
-            }
-        });
-    });
-
-    // Extra protection against back-button cache
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function() {
-        auth.signOut().then(() => {
-            window.location.href = 'index.html';
-        });
-    });
-     // Enhanced logout functionality
-    document.getElementById('logoutLink').addEventListener('click', function(e) {
-        e.preventDefault();
+    <script>
+// Single, optimized logout handler
+document.addEventListener("DOMContentLoaded", function() {
+    // Auth state check
+    auth.onAuthStateChanged((user) => {
+        const loading = document.getElementById('gen-loading');
+        const content = document.getElementById('page-content');
         
-        // Show loading spinner
-        document.getElementById('gen-loading').style.display = 'flex';
-        
-        // Sign out from Firebase
-        auth.signOut().then(() => {
-            // Clear all storage
+        if (user) {
+            // User is authenticated
+            if (loading) loading.style.display = 'none';
+            if (content) content.style.display = 'block';
+        } else {
+            // User not logged in - clear storage
             sessionStorage.clear();
             localStorage.clear();
-            
-            // Force redirect to index.html with cache busting
-            window.location.href = 'index.html?t=' + new Date().getTime();
-            
-            // Prevent back button
-            history.pushState(null, null, 'index.html');
-            window.addEventListener('popstate', function() {
-                window.location.href = 'index.html';
-            });
-            
-        }).catch((error) => {
-            console.error("Logout error:", error);
-            window.location.href = 'index.html';
-        });
-    });
-
-    // Auth check (optional - keep if you want page protection)
-    auth.onAuthStateChanged((user) => {
-        if (!user) {
-            // User not logged in
-            sessionStorage.clear();
         }
     });
-</script>
 
+    // Logout functionality
+    document.getElementById("logoutLink").addEventListener("click", function(e) {
+        e.preventDefault();
+        const loading = document.getElementById('gen-loading');
+        
+        // Show loading spinner if available
+        if (loading) loading.style.display = 'flex';
+        
+        // Firebase sign out with cleanup
+        auth.signOut()
+            .then(() => {
+                // Clear all storage
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Force redirect with cache busting and back-button prevention
+                window.location.replace('index.html?t=' + new Date().getTime());
+            })
+            .catch((error) => {
+                console.error("Logout failed:", error);
+                window.location.href = 'index.html';
+            });
+    });
+
+    // Extra protection against cached pages
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            auth.currentUser?.reload().catch(() => {
+                window.location.href = 'index.html';
+            });
+        }
+    });
+
+    // Back-button protection
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function() {
+        if (!auth.currentUser) {
+            window.location.href = 'index.html';
+        }
+    });
+});
+</script>
 </body>
 
 
