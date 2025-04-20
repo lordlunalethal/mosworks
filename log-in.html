@@ -285,6 +285,13 @@
             // 2. reCAPTCHA verification
             // 3. SMS code verification
         });
+        // After successful Firebase login
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // Set a custom cookie (expires in 1 day)
+    document.cookie = `mosworks_session=${user.uid}; max-age=86400; path=/; Secure; SameSite=Lax`;
+  }
+});
     </script>
 </body>
 </html>
