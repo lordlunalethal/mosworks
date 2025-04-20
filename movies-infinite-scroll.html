@@ -34,7 +34,10 @@
       // PROTECTION: Check auth state before page loads
       auth.onAuthStateChanged((user) => {
           if (!user) {
-              window.location.href = 'log-in.html';
+              // Clear any remaining session data
+              sessionStorage.clear();
+              localStorage.clear();
+              window.location.href = 'log-in.html?redirect=' + encodeURIComponent(window.location.pathname);
           }
       });
     </script>
@@ -1039,7 +1042,7 @@
 });
 </script>
 <script>
-        // Enhanced Auth Protection
+  // Enhanced Auth Protection
     document.addEventListener("DOMContentLoaded", function() {
         auth.onAuthStateChanged((user) => {
             const loading = document.getElementById('gen-loading');
@@ -1050,14 +1053,48 @@
                 loading.style.display = 'none';
                 content.style.display = 'block';
                 
-                // Set up logout
+                // Set up PROPER logout
                 document.getElementById('logoutLink').addEventListener('click', (e) => {
                     e.preventDefault();
                     loading.style.display = 'flex';
+                    
+                    // Force sign out from all providers
                     auth.signOut().then(() => {
+                        // Clear all auth tokens and caches
+                        sessionStorage.clear();
+                        localStorage.clear();
+                        
+                        // Force reload to prevent back-button access
+                        window.location.href = 'index.html';
+                        window.location.reload(true);
+                    }).catch((error) => {
+                        console.error("Logout failed:", error);
                         window.location.href = 'index.html';
                     });
                 });
+                
+            } else {
+                // Already handled in head script
+            }
+        });
+
+        // Prevent cached page access
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                auth.currentUser.reload().catch(() => {
+                    window.location.href = 'log-in.html';
+                });
+            }
+        });
+    });
+
+    // Extra protection against back-button cache
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function() {
+        auth.signOut().then(() => {
+            window.location.href = 'log-in.html';
+        });
+    });
 </script>
 
 </body>
