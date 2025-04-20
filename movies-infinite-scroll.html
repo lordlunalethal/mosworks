@@ -10,19 +10,14 @@
     <meta name="author" content="StreamLab" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>mosworks! - Catch up with all your favorite characters!</title>
-    <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.png">
-    <!-- CSS bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!--  Style -->
     <link rel="stylesheet" href="css/style.css" />
-    <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
-    <!-- Firebase -->
+    
+    <!-- Firebase Auth -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-
-    <!-- Your Firebase Config -->
     <script>
       const firebaseConfig = {
         apiKey: "AIzaSyBxn7hOX7k6L-CUgAzA_VzjECxeCCMbiV4",
@@ -35,6 +30,13 @@
       };
       firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
+      
+      // PROTECTION: Check auth state before page loads
+      auth.onAuthStateChanged((user) => {
+          if (!user) {
+              window.location.href = 'log-in.html';
+          }
+      });
     </script>
 </head>
 
@@ -1034,20 +1036,24 @@
 });
 </script>
 <script>
+        // Enhanced Auth Protection
+    document.addEventListener("DOMContentLoaded", function() {
         auth.onAuthStateChanged((user) => {
-        if (!user) {
-            // User not logged in, redirect to login page
-            window.location.href = 'log-in.html';
-        } else {
-            // User is logged in, hide spinner
-            spinner.style.display = 'none';
+            const loading = document.getElementById('gen-loading');
+            const content = document.getElementById('page-content');
             
-            // Set up logout functionality
-            document.getElementById('logoutLink').addEventListener('click', (e) => {
-                e.preventDefault();
-                spinner.style.display = 'flex';
-                auth.signOut().then(() => {
-                    window.location.href = 'index.html';
+            if (user) {
+                // User is authenticated
+                loading.style.display = 'none';
+                content.style.display = 'block';
+                
+                // Set up logout
+                document.getElementById('logoutLink').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loading.style.display = 'flex';
+                    auth.signOut().then(() => {
+                        window.location.href = 'index.html';
+                    });
                 });
 </script>
 
