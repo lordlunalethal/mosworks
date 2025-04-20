@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Streamlab - Video Streaming HTML5 Template" />
     <meta name="description" content="Streamlab - Video Streaming HTML5 Template" />
     <meta name="author" content="StreamLab" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>mosworks! - Catch up with all your favorite charecters!</title>
+    <title>mosworks! - Catch up with all your favorite characters!</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.png">
     <!-- CSS bootstrap-->
@@ -18,21 +16,34 @@
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+
+    <!-- Your Firebase Config -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBxn7hOX7k6L-CUgAzA_VzjECxeCCMbiV4",
+        authDomain: "mosworks-7bc44.firebaseapp.com",
+        projectId: "mosworks-7bc44",
+        storageBucket: "mosworks-7bc44.firebasestorage.app",
+        messagingSenderId: "788454456705",
+        appId: "1:788454456705:web:88ffe1a0a64c785468fc80",
+        measurementId: "G-6TSVFW3X73"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+    </script>
 </head>
 
 <body>
 
     <!--=========== Loader =============-->
-    <!--div id="gen-loading">
-        <div id="gen-loading-center">
-            <img src="images/logo-1.png" alt="loading">
-        </div>
-    </div-->
     <div id="loading-spinner" class="loading-spinner">
-    <div class="spinner"></div>
-</div>
-
-    <!--=========== Loader =============-->
+        <div class="spinner"></div>
+    </div>
 
     <!-- Log-in  -->
     <section class="position-relative pb-0">
@@ -43,34 +54,55 @@
                     <div class="text-center">
                         <form name="pms_login" id="pms_login" action="#" method="post">
                             <h4>Sign In</h4>
+                            <!-- div ->
                             <p class="login-username">
-                                <label for="user_login">Username</label>
-                                <input type="text" name="log" id="user_login" class="input" value="" size="20">
+                                <label for="user_login">Email</label>
+                                <input type="email" name="log" id="user_login" class="input" value="" size="20" required>
                             </p>
                             <p class="login-password">
                                 <label for="user_pass">Password</label>
-                                <input type="password" name="pwd" id="user_pass" class="input" value="" size="20">
+                                <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" required>
                             </p>
                             <p class="login-remember">
-                                <label>
-                                    
-                                     </label>
+                                <label></label>
                             </p>
                             <p class="login-submit">
                                 <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary"
                                     value="Log In">
                                 <input type="hidden" name="redirect_to">
                             </p>
-                            <input type="hidden" name="pms_login" value="1"><input type="hidden" name="pms_redirect"><a
-                                href="register.html"></a>  <a href="recover-password.html"></a>
+                            </div -->
+                            <!-- Social Login Divider -->
+                            
+                            
+                            <!-- Social Login Buttons -->
+                            <div class="gen-social-login">
+                                <button type="button" id="googleLogin" class="gen-social-btn google-btn">
+                                    <i class="fab fa-google"></i> Continue with Google
+                                </button>
+                                <button type="button" id="facebookLogin" class="gen-social-btn facebook-btn">
+                                    <i class="fab fa-facebook-f"></i> Continue with Facebook
+                                </button>
+                                <button type="button" id="phoneLogin" class="gen-social-btn phone-btn">
+                                    <i class="fas fa-mobile-alt"></i> Continue with Phone
+                                </button>
+                            </div>
+                            
+                            <input type="hidden" name="pms_login" value="1">
+                            <input type="hidden" name="pms_redirect">
+                            <!--div class="gen-login-links">
+                                <a href="register.html">Create Account</a>
+                                <span class="divider">|</span>
+                                <a href="recover-password.html">Forgot Password?</a>
+                            </div -->
+                            <div id="firebase-error" style="color: red; margin-top: 10px;"></div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Log-in  -->
-
+    
     <!-- Back-to-Top start -->
     <div id="back-to-top">
         <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
@@ -78,7 +110,6 @@
     <!-- Back-to-Top end -->
 
     <!-- js-min -->
-    <script src="js/credentials.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/asyncloader.min.js"></script>
     <!-- JS bootstrap -->
@@ -93,100 +124,167 @@
     <script src="js/swiper-bundle.min.js"></script>
     <!-- Iscotop -->
     <script src="js/isotope.pkgd.min.js"></script>
-
     <script src="js/jquery.magnific-popup.min.js"></script>
-
     <script src="js/slick.min.js"></script>
-
     <script src="js/streamlab-core.js"></script>
-
     <script src="js/script.js"></script>
-  <!-- Include credentials.js before script.js -->
-<script src="js/credentials.js"></script>
-<!--script>
-    // Listen to form submission
-    document.getElementById("pms_login").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent default form submission
 
-        // Get user input
-        const enteredUsername = document.getElementById("user_login").value;
-        const enteredPassword = document.getElementById("user_pass").value;
-
-        // Validate credentials
-        const isValid = validCredentials.some(
-            (cred) => cred.username === enteredUsername && cred.password === enteredPassword
-        );
-
-        if (isValid) {
-            alert("Login successful! Redirecting to homepage...");
-            window.location.href = "traveling.html"; // Redirect to the homepage
-        } else {
-            alert("Invalid credentials. Please try again.");
+    <style>
+        /* Social Login Styles that match your theme */
+        .gen-social-divider {
+            margin: 20px 0;
+            position: relative;
+            text-align: center;
         }
-    });
-</script-->
-<script>
-// Listen to form submission
-document.getElementById("pms_login").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default form submission
+        .divider-text {
+            background: rgba(0,0,0,0.7);
+            padding: 0 15px;
+            position: relative;
+            color: #fff;
+            font-size: 14px;
+        }
+        .gen-social-divider:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            z-index: -1;
+        }
+        .gen-social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .gen-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gen-social-btn i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .google-btn {
+            background: #DB4437;
+            color: white;
+        }
+        .facebook-btn {
+            background: #3b5998;
+            color: white;
+        }
+        .phone-btn {
+            background: #25D366;
+            color: white;
+        }
+        .gen-social-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .gen-login-links {
+            margin-top: 15px;
+            color: #fff;
+        }
+        .gen-login-links a {
+            color: #f8f9fa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .gen-login-links a:hover {
+            color: #00a8ff;
+        }
+        .divider {
+            margin: 0 10px;
+            color: rgba(255,255,255,0.5);
+        }
+    </style>
 
-    // Get user input
-    const enteredUsername = document.getElementById("user_login").value;
-    const enteredPassword = document.getElementById("user_pass").value;
-
-    // Get the spinner element and show it during the login attempt
-    const spinner = document.getElementById("loading-spinner");
-    spinner.style.display = "flex";
-
-    // Validate credentials
-    const isValid = validCredentials.some(
-        (cred) => cred.username === enteredUsername && cred.password === enteredPassword
-    );
-
-    // Handle login result
-    if (isValid) {
-        console.log("Login successful! Redirecting to homepage...");
+    <script>
+        // Initialize auth providers
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        const facebookProvider = new firebase.auth.FacebookAuthProvider();
         
-        // Store login state in sessionStorage
-        sessionStorage.setItem("isLoggedIn", "true");
-        console.log("Session storage after login:", sessionStorage.getItem("isLoggedIn")); // Debugging line
+        // Handle email/password login
+        document.getElementById("pms_login").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("user_login").value;
+            const password = document.getElementById("user_pass").value;
+            const errorElement = document.getElementById("firebase-error");
+            const spinner = document.getElementById("loading-spinner");
 
-        // Redirect after successful login
-        setTimeout(function() {
-            window.location.href = "movies-infinite-scroll.html"; // Redirect to a different page
-        }, 500); // Add a small delay to ensure the spinner hides before the redirect
-    } else {
-        // Show an inline error message
-        const errorElement = document.createElement("p");
-        errorElement.style.color = "red";
-        errorElement.textContent = "Invalid credentials!. Please try again.";
-        
-        // Append the error message after the form
-        const form = document.getElementById("pms_login");
-        form.appendChild(errorElement);
+            spinner.style.display = "flex";
+            errorElement.textContent = "";
 
-        // Hide the spinner after login attempt
-        spinner.style.display = "none";
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
+                })
+                .catch((error) => {
+                    spinner.style.display = "none";
+                    let errorMessage = "Login failed. Please try again.";
+                    switch(error.code) {
+                        case "auth/user-not-found": errorMessage = "No user found with this email."; break;
+                        case "auth/wrong-password": errorMessage = "Incorrect password."; break;
+                        case "auth/invalid-email": errorMessage = "Invalid email format."; break;
+                    }
+                    errorElement.textContent = errorMessage;
+                });
+        });
 
-        // Remove error message after 3 seconds (optional)
-        setTimeout(() => {
-            errorElement.remove();
-        }, 2000);
-    }
+        // Google Login
+        document.getElementById("googleLogin").addEventListener("click", function() {
+            const spinner = document.getElementById("loading-spinner");
+            const errorElement = document.getElementById("firebase-error");
+            
+            spinner.style.display = "flex";
+            errorElement.textContent = "";
+            
+            auth.signInWithPopup(googleProvider)
+                .then(() => {
+                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
+                })
+                .catch((error) => {
+                    spinner.style.display = "none";
+                    errorElement.textContent = error.message;
+                });
+        });
 
-    // Ensure the spinner is hidden when login attempt finishes
-    setTimeout(function() {
-        spinner.style.display = "none"; // Hide the spinner after processing
-    }, 500); // You can adjust this delay as necessary (it should match the login processing time)
-});
+        // Facebook Login
+        document.getElementById("facebookLogin").addEventListener("click", function() {
+            const spinner = document.getElementById("loading-spinner");
+            const errorElement = document.getElementById("firebase-error");
+            
+            spinner.style.display = "flex";
+            errorElement.textContent = "";
+            
+            auth.signInWithPopup(facebookProvider)
+                .then(() => {
+                    setTimeout(() => window.location.href = "movies-infinite-scroll.html", 500);
+                })
+                .catch((error) => {
+                    spinner.style.display = "none";
+                    errorElement.textContent = error.message;
+                });
+        });
 
-
-</script>
-
-
-
+        // Phone Login (will need additional UI)
+        document.getElementById("phoneLogin").addEventListener("click", function() {
+            alert("Phone login would open a verification flow here");
+            // You would typically implement this with:
+            // 1. A modal to enter phone number
+            // 2. reCAPTCHA verification
+            // 3. SMS code verification
+        });
+    </script>
 </body>
-
-
-
 </html>
