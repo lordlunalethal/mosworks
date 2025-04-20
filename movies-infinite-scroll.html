@@ -1095,6 +1095,41 @@
             window.location.href = 'index.html';
         });
     });
+     // Enhanced logout functionality
+    document.getElementById('logoutLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Show loading spinner
+        document.getElementById('gen-loading').style.display = 'flex';
+        
+        // Sign out from Firebase
+        auth.signOut().then(() => {
+            // Clear all storage
+            sessionStorage.clear();
+            localStorage.clear();
+            
+            // Force redirect to index.html with cache busting
+            window.location.href = 'index.html?t=' + new Date().getTime();
+            
+            // Prevent back button
+            history.pushState(null, null, 'index.html');
+            window.addEventListener('popstate', function() {
+                window.location.href = 'index.html';
+            });
+            
+        }).catch((error) => {
+            console.error("Logout error:", error);
+            window.location.href = 'index.html';
+        });
+    });
+
+    // Auth check (optional - keep if you want page protection)
+    auth.onAuthStateChanged((user) => {
+        if (!user) {
+            // User not logged in
+            sessionStorage.clear();
+        }
+    });
 </script>
 
 </body>
